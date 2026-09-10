@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Cookie Management</title>
+</head>
+<body>
+
+    <h2>Cookie Management</h2>
+
+    <label>Key:</label>
+    <input type="text" id="key">
+    <label>Value:</label>
+    <input type="text" id="value">
+    <br><br>
+
+    <button onclick="storeCookie()">Store</button>
+    <button onclick="readCookie()">Read</button>
+    <button onclick="displayAll()">Display All</button>
+    <button onclick="deleteCookie()">Delete</button>
+    <button onclick="deleteAll()">Delete All</button>
+
+    <h3 id="msg"></h3>
+    <table id="cookieTable" border="1" cellpadding="8" cellspacing="0"></table>
+
+    <script>
+        function storeCookie() {
+            let key = document.getElementById("key").value;
+            let value = document.getElementById("value").value;
+
+            if (key && value) {
+                document.cookie = encodeURIComponent(key) + "=" + encodeURIComponent(value) + "; path=/";
+                document.getElementById("msg").innerHTML = "Cookie stored successfully!";
+                displayAll();
+            } else {
+                document.getElementById("msg").innerHTML = "Please enter both key and value.";
+            }
+        }
+
+        function readCookie() {
+            let key = document.getElementById("key").value;
+            let cookies = document.cookie.split("; ");
+
+            for (let i = 0; i < cookies.length; i++) {
+                let parts = cookies[i].split("=");
+                let cookieKey = decodeURIComponent(parts[0]);
+                if (cookieKey === key) {
+                    document.getElementById("msg").innerHTML = "Value: " + decodeURIComponent(parts[1]);
+                    return;
+                }
+            }
+            document.getElementById("msg").innerHTML = "Cookie not found!";
+        }
+
+        function displayAll() {
+            let cookies = document.cookie.split("; ");
+            let table = document.getElementById("cookieTable");
+            table.innerHTML = "<tr><th>Key</th><th>Value</th></tr>";
+
+            for (let i = 0; i < cookies.length; i++) {
+                let parts = cookies[i].split("=");
+                if (parts.length === 2) {
+                    let key = decodeURIComponent(parts[0]);
+                    let value = decodeURIComponent(parts[1]);
+                    table.innerHTML += "<tr><td>" + key + "</td><td>" + value + "</td></tr>";
+                }
+            }
+        }
+
+        function deleteCookie() {
+            let key = document.getElementById("key").value;
+            document.cookie = encodeURIComponent(key) + "=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/";
+            document.getElementById("msg").innerHTML = "Cookie deleted!";
+            displayAll();
+        }
+
+        function deleteAll() {
+            let cookies = document.cookie.split("; ");
+            for (let i = 0; i < cookies.length; i++) {
+                let parts = cookies[i].split("=");
+                let key = decodeURIComponent(parts[0]);
+                document.cookie = encodeURIComponent(key) + "=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/";
+            }
+            document.getElementById("msg").innerHTML = "All cookies deleted!";
+            displayAll();
+        }
+
+        // Display initial cookies
+        displayAll();
+    </script>
+
+</body>
+</html>

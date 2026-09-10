@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Odd and Even</title>
+</head>
+<body>
+
+    <h2>Odd and Even Numbers (0 to 15)</h2>
+    <button onclick="checkNumbers()">Show Result</button>
+    <div id="result"></div>
+
+    <script>
+        function checkNumbers() {
+            let output = "";
+            for (let i = 0; i <= 15; i++) {
+                if (i % 2 == 0) {
+                    output += i + " is Even.<br>";
+                } else {
+                    output += i + " is Odd.<br>";
+                }
+            }
+            document.getElementById("result").innerHTML = output;
+        }
+    </script>
+
+</body>
+</html>

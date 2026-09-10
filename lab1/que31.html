@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Number Generator with Colors</title>
+</head>
+<body>
+
+    <h2>Generate Numbers with Colors</h2>
+    <label>Enter a Number:</label>
+    <input type="number" id="limit">
+    <button onclick="generateNumbers()">Generate</button>
+    <div id="container"></div>
+
+    <script>
+        function isPrime(num) {
+            if (num < 2) return false;
+            for (let i = 2; i <= Math.sqrt(num); i++) {
+                if (num % i == 0) return false;
+            }
+            return true;
+        }
+
+        function generateNumbers() {
+            let limit = parseInt(document.getElementById("limit").value);
+            let container = document.getElementById("container");
+            container.innerHTML = "";
+            container.style.display = "flex";
+            container.style.flexWrap = "wrap";
+            container.style.marginTop = "20px";
+
+            for (let i = 1; i <= limit; i++) {
+                let box = document.createElement("div");
+                box.innerHTML = i;
+                box.style.width = "50px";
+                box.style.height = "50px";
+                box.style.margin = "5px";
+                box.style.display = "flex";
+                box.style.justifyContent = "center";
+                box.style.alignItems = "center";
+                box.style.fontWeight = "bold";
+                box.style.borderRadius = "6px";
+                box.style.border = "1px solid #ccc";
+
+                if (isPrime(i)) {
+                    box.style.backgroundColor = "red";
+                    box.style.color = "white";
+                } else if (i % 2 === 0) {
+                    box.style.backgroundColor = "green";
+                    box.style.color = "white";
+                } else {
+                    box.style.backgroundColor = "yellow";
+                    box.style.color = "black";
+                }
+                container.appendChild(box);
+            }
+        }
+    </script>
+
+</body>
+</html>

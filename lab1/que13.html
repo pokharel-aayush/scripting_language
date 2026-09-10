@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Join Array</title>
+</head>
+<body>
+
+    <h2>Join Array Elements into a String</h2>
+    <button onclick="joinArray()">Join Array</button>
+    <h3 id="result"></h3>
+
+    <script>
+        function joinArray() {
+            let colors = ["Cyan", "Maroon", "Grey", "Blue"];
+            let joinedString = colors.join(" ");
+            document.getElementById("result").innerHTML =
+                "Joined String: " + joinedString;
+        }
+    </script>
+
+</body>
+</html>

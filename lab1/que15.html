@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Color Choices</title>
+</head>
+<body>
+
+    <h2>Color Choices</h2>
+    <button onclick="showColors()">Show Colors</button>
+    <div id="result"></div>
+
+    <script>
+        function showColors() {
+            let color = ["Blue", "Green", "Red", "Orange", "Violet", "Indigo", "Yellow"];
+            let o = ["th", "st", "nd", "rd"];
+            let output = "";
+
+            for (let i = 0; i < color.length; i++) {
+                let choice = i + 1;
+                let suffix;
+
+                if (choice == 1) {
+                    suffix = o[1];
+                } else if (choice == 2) {
+                    suffix = o[2];
+                } else if (choice == 3) {
+                    suffix = o[3];
+                } else {
+                    suffix = o[0];
+                }
+
+                output += choice + suffix + " choice is " + color[i] + ".<br>";
+            }
+
+            document.getElementById("result").innerHTML = output;
+        }
+    </script>
+
+</body>
+<<<<<<< HEAD
+</html>
+=======
+</html>
+>>>>>>> 05efd40 (Fix styling gor some questions)

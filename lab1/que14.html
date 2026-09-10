@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sort Array</title>
+</head>
+<body>
+
+    <h2>Sort Array Elements</h2>
+    <button onclick="sortArray()">Sort Array</button>
+    <h3 id="result"></h3>
+
+    <script>
+        function sortArray() {
+            let arr = [3, 8, 7, 6, 5, -4, 3, 2, 1];
+            arr.sort(function(a, b) {
+                return a - b;
+            });
+            document.getElementById("result").innerHTML =
+                "Sorted Array: " + arr.join(", ");
+        }
+    </script>
+
+</body>
+</html>

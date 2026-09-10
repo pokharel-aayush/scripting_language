@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Person Account</title>
+</head>
+<body>
+
+    <h2>Person Account</h2>
+    <button onclick="showAccount()">Show Account</button>
+    <pre id="result"></pre>
+
+    <script>
+        let personAccount = {
+            firstName: "Aayush",
+            lastName: "Pokharel",
+            incomes: [],
+            expenses: [],
+
+            addIncome: function(desc, amount) {
+                this.incomes.push({ desc, amount });
+            },
+
+            addExpense: function(desc, amount) {
+                this.expenses.push({ desc, amount });
+            },
+
+            totalIncome: function() {
+                let total = 0;
+                for (let i = 0; i < this.incomes.length; i++) {
+                    total += this.incomes[i].amount;
+                }
+                return total;
+            },
+
+            totalExpense: function() {
+                let total = 0;
+                for (let i = 0; i < this.expenses.length; i++) {
+                    total += this.expenses[i].amount;
+                }
+                return total;
+            },
+
+            accountBalance: function() {
+                return this.totalIncome() - this.totalExpense();
+            },
+
+            accountInfo: function() {
+                return "Name: " + this.firstName + " " + this.lastName +
+                       "\nTotal Income: Rs. " + this.totalIncome() +
+                       "\nTotal Expense: Rs. " + this.totalExpense() +
+                       "\nAccount Balance: Rs. " + this.accountBalance();
+            }
+        };
+
+        function showAccount() {
+            personAccount.addIncome("Salary", 85000);
+            personAccount.addIncome("Freelance", 25000);
+            personAccount.addExpense("Rent", 18000);
+            personAccount.addExpense("Food", 7000);
+            personAccount.addExpense("Utilities", 3000);
+
+            document.getElementById("result").textContent =
+                personAccount.accountInfo();
+        }
+    </script>
+
+</body>
+</html>

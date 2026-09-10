@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Weekend Dates</title>
+</head>
+<body>
+
+    <h2>Get Weekend Dates</h2>
+    <button onclick="getWeekend()">Show Weekend Dates</button>
+    <h3 id="result"></h3>
+
+    <script>
+        function getWeekend() {
+            let today = new Date();
+            let day = today.getDay();
+
+            let saturday = new Date(today);
+            saturday.setDate(today.getDate() + (6 - day));
+
+            let sunday = new Date(today);
+            sunday.setDate(today.getDate() + (7 - day));
+
+            document.getElementById("result").innerHTML =
+                "Saturday: " + saturday.toDateString() + "<br>" +
+                "Sunday: " + sunday.toDateString();
+        }
+    </script>
+
+</body>
+</html>

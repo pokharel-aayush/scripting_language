@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Age Calculator</title>
+</head>
+<body>
+
+    <h2>Age Calculator</h2>
+    <form>
+        <label>Date of Birth:</label><br>
+        <input type="date" id="dob"><br><br>
+        <button type="button" onclick="calculateAge()">Calculate Age</button>
+    </form>
+    <h3 id="result"></h3>
+
+    <script>
+        function calculateAge() {
+            let dob = new Date(document.getElementById("dob").value);
+            let today = new Date();
+            let age = today.getFullYear() - dob.getFullYear();
+            let monthDiff = today.getMonth() - dob.getMonth();
+            if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < dob.getDate())) {
+                age--;
+            }
+            document.getElementById("result").innerHTML =
+                "Your Age: <b>" + age + "</b> years.";
+        }
+    </script>
+
+</body>
+</html>

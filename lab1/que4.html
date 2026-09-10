@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Capitalize Words</title>
+</head>
+<body>
+
+    <h2>Capitalize First Letter of Each Word</h2>
+    <input type="text" id="text" placeholder="Enter a sentence">
+    <br>
+    <button onclick="capitalizeWords()">Convert</button>
+    <h3 id="result"></h3>
+
+    <script>
+        function capitalizeWords() {
+            let str = document.getElementById("text").value;
+            let result = str
+                .split(" ")
+                .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+                .join(" ");
+
+            document.getElementById("result").innerHTML =
+                "Result: " + result;
+        }
+    </script>
+
+</body>
+</html>

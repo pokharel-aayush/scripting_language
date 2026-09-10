@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>DOM Manipulation</title>
+</head>
+<body>
+
+    <p id="p1">First paragraph about JavaScript.</p>
+    <p id="p2">Second paragraph about DOM.</p>
+    <p id="p3">Third paragraph about events.</p>
+    <p id="p4">Fourth paragraph about functions.</p>
+
+    <button onclick="performDOM()">Perform DOM Manipulation</button>
+
+    <script>
+        function performDOM() {
+            let firstPara = document.querySelector("p");
+            console.log("First Paragraph:", firstPara.textContent);
+
+            let para1 = document.querySelector("#p1");
+            let para2 = document.querySelector("#p2");
+            let para3 = document.querySelector("#p3");
+            let para4 = document.querySelector("#p4");
+
+            console.log(para1.textContent);
+            console.log(para2.textContent);
+            console.log(para3.textContent);
+            console.log(para4.textContent);
+
+            let paragraphs = document.querySelectorAll("p");
+
+            paragraphs.forEach(function(p) {
+                console.log(p.textContent);
+            });
+
+            para4.textContent = "Fourth Paragraph - DOM is powerful!";
+
+            paragraphs.forEach(function(p, index) {
+                p.setAttribute("id", "paragraph" + (index + 1));
+                p.className = "myParagraph";
+            });
+
+            paragraphs.forEach(function(p, index) {
+                p.style.backgroundColor = index % 2 === 0 ? "#f0f8ff" : "#fff0f0";
+                p.style.border = "2px solid #333";
+                p.style.fontSize = "18px";
+                p.style.fontFamily = "Arial, sans-serif";
+                p.style.padding = "12px";
+                p.style.margin = "10px";
+                p.style.borderRadius = "8px";
+            });
+        }
+    </script>
+
+</body>
+</html>

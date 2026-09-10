@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Analog Clock</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: skyblue;
+            margin: 0;
+        }
+        .clock {
+            width: 300px;
+            height: 300px;
+            border: 8px solid #333;
+            border-radius: 50%;
+            position: relative;
+            background: #fff;
+        }
+        .number {
+            position: absolute;
+            font-size: 20px;
+            font-weight: bold;
+            top: 50%;
+            left: 50%;
+            transform-origin: 0 0;
+        }
+        .hand {
+            position: absolute;
+            bottom: 50%;
+            left: 50%;
+            transform-origin: bottom;
+            transform: translateX(-50%) rotate(0deg);
+            border-radius: 4px;
+        }
+        .hour   { width: 6px;  height: 70px;  background: #333; }
+        .minute { width: 4px;  height: 100px; background: #555; }
+        .second { width: 2px;  height: 115px; background: red;   }
+        .center {
+            width: 14px;
+            height: 14px;
+            background: #333;
+            border-radius: 50%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="clock" id="clock">
+        <div class="number" style="transform: translate(-50%,-50%) rotate(0deg)   translateY(-120px) rotate(0deg);">12</div>
+        <div class="number" style="transform: translate(-50%,-50%) rotate(30deg)  translateY(-120px) rotate(-30deg);">1</div>
+        <div class="number" style="transform: translate(-50%,-50%) rotate(60deg)  translateY(-120px) rotate(-60deg);">2</div>
+        <div class="number" style="transform: translate(-50%,-50%) rotate(90deg)  translateY(-120px) rotate(-90deg);">3</div>
+        <div class="number" style="transform: translate(-50%,-50%) rotate(120deg) translateY(-120px) rotate(-120deg);">4</div>
+        <div class="number" style="transform: translate(-50%,-50%) rotate(150deg) translateY(-120px) rotate(-150deg);">5</div>
+        <div class="number" style="transform: translate(-50%,-50%) rotate(180deg) translateY(-120px) rotate(-180deg);">6</div>
+        <div class="number" style="transform: translate(-50%,-50%) rotate(210deg) translateY(-120px) rotate(-210deg);">7</div>
+        <div class="number" style="transform: translate(-50%,-50%) rotate(240deg) translateY(-120px) rotate(-240deg);">8</div>
+        <div class="number" style="transform: translate(-50%,-50%) rotate(270deg) translateY(-120px) rotate(-270deg);">9</div>
+        <div class="number" style="transform: translate(-50%,-50%) rotate(300deg) translateY(-120px) rotate(-300deg);">10</div>
+        <div class="number" style="transform: translate(-50%,-50%) rotate(330deg) translateY(-120px) rotate(-330deg);">11</div>
+
+        <div class="hand hour"   id="hourHand"></div>
+        <div class="hand minute" id="minuteHand"></div>
+        <div class="hand second" id="secondHand"></div>
+        <div class="center"></div>
+    </div>
+
+    <script>
+        function updateClock() {
+            const now = new Date();
+            const hours   = now.getHours() % 12;
+            const minutes = now.getMinutes();
+            const seconds = now.getSeconds();
+
+            const hourDeg   = hours * 30 + minutes * 0.5;
+            const minuteDeg = minutes * 6;
+            const secondDeg = seconds * 6;
+
+            document.getElementById("hourHand").style.transform =
+                `translateX(-50%) rotate(${hourDeg}deg)`;
+            document.getElementById("minuteHand").style.transform =
+                `translateX(-50%) rotate(${minuteDeg}deg)`;
+            document.getElementById("secondHand").style.transform =
+                `translateX(-50%) rotate(${secondDeg}deg)`;
+        }
+
+        updateClock();
+        setInterval(updateClock, 1000);
+    </script>
+
+</body>
+</html>

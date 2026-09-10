@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Largest of Five</title>
+</head>
+<body>
+
+    <script>
+        let num1 = parseFloat(prompt("Enter first number:"));
+        let num2 = parseFloat(prompt("Enter second number:"));
+        let num3 = parseFloat(prompt("Enter third number:"));
+        let num4 = parseFloat(prompt("Enter fourth number:"));
+        let num5 = parseFloat(prompt("Enter fifth number:"));
+
+        let largest = num1;
+
+        if (num2 > largest) largest = num2;
+        if (num3 > largest) largest = num3;
+        if (num4 > largest) largest = num4;
+        if (num5 > largest) largest = num5;
+
+        alert("The largest number is: " + largest);
+    </script>
+
+</body>
+</html>

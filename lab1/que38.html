@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Event Handling</title>
+</head>
+<body>
+
+    <h2>JavaScript Events Demo</h2>
+    <p id="para" style="padding:15px; border:2px solid #333; font-size:12pt;">
+        This is a sample paragraph. Click the buttons below to perform different actions.
+    </p>
+
+    <button onclick="changeBackground()">Change Background</button>
+    <button onclick="changeParaBackground()">Change Paragraph Background</button>
+    <button onclick="hideParagraph()">Hide Paragraph</button>
+    <button onclick="showParagraph()">Show Paragraph</button>
+    <button onclick="increaseFont()">Increase Font Size by 2pt</button>
+    <button onclick="decreaseFont()">Decrease Font Size by 2pt</button>
+    <button onclick="resetFont()">Reset Font to 12pt</button>
+    <button onclick="changeTextColor()">Change Text Color</button>
+
+    <script>
+        let para = document.getElementById("para");
+        let fontSize = 12;
+
+        function randomColor() {
+            let letters = "0123456789ABCDEF";
+            let color = "#";
+            for (let i = 0; i < 6; i++) {
+                color += letters[Math.floor(Math.random() * 16)];
+            }
+            return color;
+        }
+
+        function changeBackground() {
+            document.body.style.backgroundColor = randomColor();
+        }
+
+        function changeParaBackground() {
+            para.style.backgroundColor = randomColor();
+        }
+
+        function hideParagraph() {
+            para.style.display = "none";
+        }
+
+        function showParagraph() {
+            para.style.display = "block";
+        }
+
+        function increaseFont() {
+            fontSize += 2;
+            para.style.fontSize = fontSize + "pt";
+        }
+
+        function decreaseFont() {
+            if (fontSize > 4) {
+                fontSize -= 2;
+                para.style.fontSize = fontSize + "pt";
+            }
+        }
+
+        function resetFont() {
+            fontSize = 12;
+            para.style.fontSize = "12pt";
+        }
+
+        function changeTextColor() {
+            para.style.color = randomColor();
+        }
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Check Array</title>
+</head>
+<body>
+
+    <h2>Check Whether Input is an Array</h2>
+    <button onclick="checkArray()">Check</button>
+    <h3 id="result"></h3>
+
+    <script>
+        function checkArray() {
+            let input1 = [6, 7, 8, 9];
+            let input2 = "Hello JS";
+
+            let output = "";
+            output += "[6, 7, 8, 9] is " + (Array.isArray(input1) ? "" : "NOT ") + "an Array.<br>";
+            output += "\"Hello JS\" is " + (Array.isArray(input2) ? "" : "NOT ") + "an Array.";
+
+            document.getElementById("result").innerHTML = output;
+        }
+    </script>
+
+</body>
+</html>

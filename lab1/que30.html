@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Countries Table</title>
+</head>
+<body>
+
+    <h2 align="center">50 Countries</h2>
+    <table id="countryTable" border="1" cellpadding="10" cellspacing="0" align="center"></table>
+
+    <script>
+        let countries = [
+            "Nepal", "India", "China", "Japan", "USA", "Canada",
+            "Brazil", "Argentina", "Australia", "Germany", "France", "Italy",
+            "Spain", "Portugal", "Russia", "Pakistan", "Bangladesh", "Sri Lanka",
+            "Bhutan", "Maldives", "Thailand", "Malaysia", "Singapore", "Indonesia",
+            "Vietnam", "South Korea", "North Korea", "Mexico", "Chile", "Peru",
+            "Colombia", "Nigeria", "Kenya", "Egypt", "South Africa", "Morocco",
+            "Saudi Arabia", "UAE", "Qatar", "Kuwait", "Turkey", "Iran",
+            "Iraq", "Afghanistan", "Ukraine", "Poland", "Netherlands", "Belgium",
+            "Sweden", "Norway"
+        ];
+
+        let table = document.getElementById("countryTable");
+
+        for (let i = 0; i < countries.length; i += 6) {
+            let row = document.createElement("tr");
+            for (let j = i; j < i + 6 && j < countries.length; j++) {
+                let cell = document.createElement("td");
+                cell.innerHTML = countries[j];
+                cell.style.textAlign = "center";
+                cell.style.padding = "12px";
+                cell.style.fontWeight = "bold";
+                row.appendChild(cell);
+            }
+            table.appendChild(row);
+        }
+    </script>
+
+</body>
+</html>

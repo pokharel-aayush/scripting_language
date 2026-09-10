@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>30 Days of JavaScript Challenge</title>
+</head>
+<body>
+
+    <div class="wrapper">
+        <h1>Asabeneh Yetayeh challenges in <span id="year">2020</span></h1>
+        <h2>30DaysOfJavaScript Challenge</h2>
+        <h3 id="dateTime"></h3>
+        <ul>
+            <li>Python Challenge Done</li>
+            <li>JavaScript Challenge Ongoing</li>
+            <li>React Challenge Coming</li>
+            <li>FullStack Challenge Coming</li>
+            <li>DataAnalysis Challenge Coming</li>
+            <li>ReactNative Challenge Coming</li>
+            <li>MachineLearning Challenge Coming</li>
+        </ul>
+    </div>
+
+    <script>
+        let year = document.getElementById("year");
+        let dateTime = document.getElementById("dateTime");
+        let listItems = document.querySelectorAll("li");
+
+        function randomColor() {
+            let letters = "0123456789ABCDEF";
+            let color = "#";
+            for (let i = 0; i < 6; i++) {
+                color += letters[Math.floor(Math.random() * 16)];
+            }
+            return color;
+        }
+
+  
+        document.body.style.fontFamily = "Arial";
+        document.body.style.textAlign = "center";
+
+        let wrapper = document.querySelector(".wrapper");
+        wrapper.style.width = "600px";
+        wrapper.style.margin = "20px auto";
+
+        dateTime.style.display = "inline-block";
+        dateTime.style.padding = "10px 20px";
+        dateTime.style.margin = "20px";
+        dateTime.style.borderRadius = "8px";
+
+        let ul = document.querySelector("ul");
+        ul.style.listStyle = "none";
+        ul.style.padding = "0";
+
+        // Style list items based on status
+        listItems.forEach(function(item) {
+            item.style.padding = "15px";
+            item.style.margin = "8px";
+            item.style.textAlign = "left";
+            item.style.borderRadius = "8px";
+            item.style.fontWeight = "bold";
+
+            if (item.textContent.includes("Done")) {
+                item.style.backgroundColor = "green";
+                item.style.color = "white";
+            } else if (item.textContent.includes("Ongoing")) {
+                item.style.backgroundColor = "yellow";
+                item.style.color = "black";
+            } else {
+                item.style.backgroundColor = "red";
+                item.style.color = "white";
+            }
+        });
+
+        // Change year color every 1 second
+        setInterval(function() {
+            year.style.color = randomColor();
+        }, 1000);
+
+        // Update date/time with changing background every 1 second
+        function showDateTime() {
+            let now = new Date();
+            dateTime.innerHTML = now.toLocaleString();
+            dateTime.style.backgroundColor = randomColor();
+        }
+
+        showDateTime();
+        setInterval(showDateTime, 1000);
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dog Object</title>
+</head>
+<body>
+
+    <h2>Dog Object Example</h2>
+    <button onclick="createDog()">Show Dog Information</button>
+    <pre id="result"></pre>
+
+    <script>
+        function createDog() {
+            let dog = {};
+            console.log("Empty Dog Object:", dog);
+
+            dog.name = "Buddy";
+            dog.legs = 4;
+            dog.color = "Brown";
+            dog.age = 3;
+            dog.bark = function() {
+                return "Woof Woof";
+            };
+
+            dog.breed = "Labrador";
+            dog.getDogInfo = function() {
+                return "Name: " + this.name +
+                       "\nLegs: " + this.legs +
+                       "\nColor: " + this.color +
+                       "\nAge: " + this.age +
+                       "\nBreed: " + this.breed +
+                       "\nSound: " + this.bark();
+            };
+
+            let output = "";
+            output += "Name: " + dog.name + "\n";
+            output += "Legs: " + dog.legs + "\n";
+            output += "Color: " + dog.color + "\n";
+            output += "Age: " + dog.age + "\n";
+            output += "Bark: " + dog.bark() + "\n";
+            output += "Breed: " + dog.breed + "\n\n";
+            output += "Dog Information:\n" + dog.getDogInfo();
+
+            document.getElementById("result").textContent = output;
+            console.log("Dog Object:", dog);
+        }
+    </script>
+
+</body>
+</html>

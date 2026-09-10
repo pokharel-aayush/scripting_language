@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dynamic Table</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 30px;
+            background: #f4f7fc;
+        }
+        h2 {
+            color: #0b2a40;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: #fff;
+        }
+        table, th, td {
+            border: 1px solid #ccc;
+        }
+        th, td {
+            padding: 12px;
+            text-align: center;
+        }
+        th {
+            background: #e9edf2;
+            color: #0b2a40;
+        }
+        input, select {
+            width: 90%;
+            padding: 6px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            padding: 8px 18px;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        #addBtn {
+            background: #4CAF50;
+            margin-top: 15px;
+            font-size: 16px;
+            padding: 10px 24px;
+        }
+        #addBtn:hover { background: #3d9142; }
+        .deleteBtn { background: #dc3545; }
+        .deleteBtn:hover { background: #b02a37; }
+    </style>
+</head>
+<body>
+
+    <h2>Product List</h2>
+    <table id="myTable">
+        <tr>
+            <th>No</th>
+            <th>Product</th>
+            <th>Price</th>
+            <th>Action</th>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>
+                <select>
+                    <option>Laptop</option>
+                    <option>Mobile</option>
+                    <option>Keyboard</option>
+                    <option>Mouse</option>
+                </select>
+            </td>
+            <td><input type="number" placeholder="Enter Price"></td>
+            <td><button class="deleteBtn" onclick="deleteRow(this)">Delete</button></td>
+        </tr>
+    </table>
+    <br>
+    <button id="addBtn" onclick="addRow()">Add New Row</button>
+
+    <script>
+        function addRow() {
+            let table = document.getElementById("myTable");
+            let rowCount = table.rows.length;
+
+            let row = table.insertRow();
+            row.innerHTML =
+                "<td>" + rowCount + "</td>" +
+                "<td><select><option>Laptop</option><option>Mobile</option><option>Keyboard</option><option>Mouse</option></select></td>" +
+                "<td><input type='number' placeholder='Enter Price'></td>" +
+                "<td><button class='deleteBtn' onclick='deleteRow(this)'>Delete</button></td>";
+        }
+
+        function deleteRow(button) {
+            let row = button.parentNode.parentNode;
+            row.remove();
+            updateNumbers();
+        }
+
+        function updateNumbers() {
+            let table = document.getElementById("myTable");
+            for (let i = 1; i < table.rows.length; i++) {
+                table.rows[i].cells[0].innerHTML = i;
+            }
+        }
+    </script>
+</body>
+</html>

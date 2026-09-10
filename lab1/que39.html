@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Registration Form</title>
+    <style>
+        body { font-family: Arial; background: #f2f2f2; }
+        .container { width: 450px; margin: 30px auto; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 0 10px #aaa; }
+        input, textarea, select { width: 100%; padding: 8px; margin: 5px 0 12px; box-sizing: border-box; }
+        .gender input { width: auto; }
+        button { width: 100%; padding: 10px; background: #4CAF50; color: white; border: none; cursor: pointer; font-size: 16px; border-radius: 5px; }
+        .error { color: red; font-size: 14px; margin-top: 10px; }
+        label { font-weight: bold; }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Registration Form</h2>
+        <form onsubmit="return validateForm()">
+
+            <label>Name</label>
+            <input type="text" id="name" placeholder="Full Name">
+
+            <label>Address</label>
+            <textarea id="address" placeholder="Enter Address"></textarea>
+
+            <label>Username</label>
+            <input type="text" id="username" placeholder="Username (letters, numbers, underscore)">
+
+            <label>Email</label>
+            <input type="text" id="email" placeholder="email@example.com">
+
+            <label>Password</label>
+            <input type="password" id="password" placeholder="Min 8 chars, 1 upper, 1 lower, 1 digit, 1 special">
+
+            <label>Website</label>
+            <input type="text" id="website" placeholder="Your website URL">
+
+            <label>Phone</label>
+            <input type="text" id="phone" placeholder="98XXXXXXXX or 97XXXXXXXX or 96XXXXXXXX">
+
+            <label>Gender</label>
+            <div class="gender">
+                <input type="radio" name="gender" value="Male"> Male
+                <input type="radio" name="gender" value="Female"> Female
+                <input type="radio" name="gender" value="Other"> Other
+            </div>
+
+            <label>Course</label>
+            <select id="course">
+                <option value="">--Select Course--</option>
+                <option>BCA</option>
+                <option>BIT</option>
+                <option>BIM</option>
+                <option>BSc CSIT</option>
+            </select>
+
+            <div class="error" id="error"></div>
+            <button type="submit">Submit</button>
+
+        </form>
+    </div>
+
+    <script>
+        function validateForm() {
+            let name = document.getElementById("name").value.trim();
+            let address = document.getElementById("address").value.trim();
+            let username = document.getElementById("username").value.trim();
+            let email = document.getElementById("email").value.trim();
+            let password = document.getElementById("password").value;
+            let phone = document.getElementById("phone").value.trim();
+            let course = document.getElementById("course").value;
+            let gender = document.getElementsByName("gender");
+            let error = document.getElementById("error");
+
+            error.innerHTML = "";
+
+            // Name: not empty, no numbers
+            if (name === "" || /\d/.test(name)) {
+                error.innerHTML = "Invalid Name (required, no numbers)";
+                return false;
+            }
+
+            // Address: not empty
+            if (address === "") {
+                error.innerHTML = "Address is required";
+                return false;
+            }
+
+            // Username: not empty, no spaces, only underscore allowed
+            if (!/^[A-Za-z0-9_]+$/.test(username) || username === "") {
+                error.innerHTML = "Invalid Username (letters, numbers, underscore only, no spaces)";
+                return false;
+            }
+
+            // Email: not empty, includes @
+            if (email === "" || !email.includes("@")) {
+                error.innerHTML = "Invalid Email (must include @)";
+                return false;
+            }
+
+            // Password: min 8 chars, 1 upper, 1 lower, 1 digit, 1 special
+            let passPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&]).{8,}$/;
+            if (!passPattern.test(password)) {
+                error.innerHTML = "Password must be 8+ chars, include 1 uppercase, 1 lowercase, 1 digit, 1 special character";
+                return false;
+            }
+
+            // Phone: starts with 98,97,96, only numbers, 10 digits total
+            let phonePattern = /^(98|97|96)\d{8}$/;
+            if (!phonePattern.test(phone)) {
+                error.innerHTML = "Invalid Phone (must start with 98/97/96 and be 10 digits)";
+                return false;
+            }
+
+            // Gender: selected
+            let selected = false;
+            for (let i = 0; i < gender.length; i++) {
+                if (gender[i].checked) selected = true;
+            }
+            if (!selected) {
+                error.innerHTML = "Please select Gender";
+                return false;
+            }
+
+            // Course: selected
+            if (course === "") {
+                error.innerHTML = "Please select a Course";
+                return false;
+            }
+
+            alert("Registration Successful!");
+            return true;
+        }
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Counter App</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 60px;
+            background: #f4f7fc;
+        }
+        h2 {
+            color: #0b2a40;
+        }
+        #container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            margin-top: 30px;
+        }
+        button {
+            width: 70px;
+            height: 45px;
+            background: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 22px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #3d9142;
+        }
+        #count {
+            width: 80px;
+            height: 40px;
+            text-align: center;
+            font-size: 22px;
+            font-weight: bold;
+            background: #fff3cd;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+        }
+        #resetBtn {
+            margin-top: 30px;
+            width: 120px;
+            background: #dc3545;
+        }
+        #resetBtn:hover {
+            background: #b02a37;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Counter App</h2>
+
+    <div id="container">
+        <button onclick="decrement()">-</button>
+        <input type="text" id="count" value="0" readonly>
+        <button onclick="increment()">+</button>
+    </div>
+
+    <button id="resetBtn" onclick="resetCounter()">Reset</button>
+
+    <script>
+        let count = 0;
+        const display = document.getElementById("count");
+
+        function increment() {
+            count++;
+            display.value = count;
+        }
+
+        function decrement() {
+            count--;
+            display.value = count;
+        }
+
+        function resetCounter() {
+            count = 0;
+            display.value = count;
+        }
+    </script>
+
+</body>
+</html>
