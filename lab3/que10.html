@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AJAX Login</title>
+    <!-- Include jQuery CDN -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script>
+    $(document).ready(function() {
+        $("#loginForm").submit(function(e) {
+            // Prevent the form from reloading the page
+            e.preventDefault(); 
+            
+            // Get values from the input boxes
+            var userid = $("#userid").val();
+            var password = $("#password").val();
+            
+            // Send data to PHP backend using AJAX
+            $.ajax({
+                url: "login.php",
+                type: "POST",
+                data: { userid: userid, password: password },
+                success: function(response) {
+                    // Trim the response to remove any accidental whitespace
+                    if (response.trim() === "success") {
+                        // Hide the input boxes
+                        $("#loginForm").hide();
+                        // Show welcome message
+                        $("#message").html("<b>Welcome, " + userid + "!</b>");
+                    } else {
+                        // Show error message, keep the form visible
+                        $("#message").html("<b>Invalid credentials. Please try again.</b>");
+                    }
+                }
+            });
+        });
+    });
+    </script>
+</head>
+<body>
+
+    <h3>AJAX Login Form</h3>
+    <!-- Div to show messages -->
+    <div id="message"></div>
+    <br>
+
+    <!-- Login Form -->
+    <form id="loginForm">
+        <label>User ID:</label><br>
+        <input type="text" id="userid"><br><br>
+        
+        <label>Password:</label><br>
+        <input type="password" id="password"><br><br>
+        
+        <input type="submit" value="Login">
+    </form>
+
+</body>
+</html>

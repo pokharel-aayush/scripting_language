@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AJAX Movies API</title>
+</head>
+<body>
+
+    <h3>Movie List</h3>
+    <div id="status">Loading movies...</div>
+    <br>
+    
+    <!-- Table to display movie data -->
+    <table id="movieTable" border="1" cellpadding="8" cellspacing="0">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Title</th>
+                <th>Poster</th>
+                <th>Year</th>
+                <th>Genre</th>
+                <th>Rating</th>
+                <th>Director</th>
+                <th>Country</th>
+                <th>Language</th>
+                <th>Actors</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+
+    <script>
+    // Create XMLHttpRequest object
+    var xhttp = new XMLHttpRequest();
+    
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            // Parse JSON response
+            var movies = JSON.parse(this.responseText);
+            
+            // Hide loading message
+            document.getElementById("status").style.display = "none";
+            
+            var tableBody = document.querySelector("#movieTable tbody");
+            
+            // Loop through each movie and create a table row
+            movies.forEach(function(movie) {
+                var row = "<tr>" +
+                    "<td>" + movie.id + "</td>" +
+                    "<td>" + movie.title + "</td>" +
+                    "<td><img src='" + movie.poster + "' width='50' height='50'></td>" +
+                    "<td>" + movie.year + "</td>" +
+                    "<td>" + movie.genre + "</td>" +
+                    "<td>" + movie.rating + "</td>" +
+                    "<td>" + movie.director + "</td>" +
+                    "<td>" + movie.country + "</td>" +
+                    "<td>" + movie.language + "</td>" +
+                    "<td>" + movie.actors + "</td>" +
+                    "</tr>";
+                tableBody.innerHTML += row;
+            });
+        } else if (this.readyState == 4) {
+            // Handle error 
+            document.getElementById("status").innerHTML = 
+                "Error fetching data. Make sure movies.json exists in the same folder.";
+        }
+    };
+    
+    // Send GET request to the local JSON file
+    xhttp.open("GET", "movies.json", true);
+    xhttp.send();
+    </script>
+
+</body>
+</html>

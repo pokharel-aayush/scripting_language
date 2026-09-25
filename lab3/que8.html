@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>jQuery Effects</title>
+    <!-- Include jQuery CDN -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script>
+    $(document).ready(function() {
+        // Target box styling (needs some basic styling to see effects)
+        $("#box").css({
+            "width": "150px", "height": "150px", 
+            "background-color": "#4CAF50", "color": "white", 
+            "text-align": "center", "line-height": "150px", 
+            "font-family": "Arial", "margin-top": "20px"
+        });
+
+        // 1. Hide
+        $("#btnHide").click(function() { $("#box").hide(); });
+        
+        // 2. Show
+        $("#btnShow").click(function() { $("#box").show(); });
+        
+        // 3. Toggle (Hide/Show)
+        $("#btnToggle").click(function() { $("#box").toggle(); });
+        
+        // 4. Fade In
+        $("#btnFadeIn").click(function() { $("#box").fadeIn(); });
+        
+        // 5. Fade Out
+        $("#btnFadeOut").click(function() { $("#box").fadeOut(); });
+        
+        // 6. Fade Toggle
+        $("#btnFadeToggle").click(function() { $("#box").fadeToggle(); });
+        
+        // 7. Slide Up
+        $("#btnSlideUp").click(function() { $("#box").slideUp(); });
+        
+        // 8. Slide Down
+        $("#btnSlideDown").click(function() { $("#box").slideDown(); });
+        
+        // 9. Slide Toggle
+        $("#btnSlideToggle").click(function() { $("#box").slideToggle(); });
+        
+        // 10. Animate (Width change)
+        $("#btnAnimate").click(function() { 
+            $("#box").animate({width: "300px", height: "300px", lineHeight: "300px"}); 
+        });
+    });
+    </script>
+</head>
+<body>
+
+    <h3>jQuery Effects Demo</h3>
+    
+    <!-- Buttons for each effect -->
+    <button id="btnHide">Hide</button>
+    <button id="btnShow">Show</button>
+    <button id="btnToggle">Toggle</button>
+    <button id="btnFadeIn">Fade In</button>
+    <button id="btnFadeOut">Fade Out</button>
+    <button id="btnFadeToggle">Fade Toggle</button>
+    <button id="btnSlideUp">Slide Up</button>
+    <button id="btnSlideDown">Slide Down</button>
+    <button id="btnSlideToggle">Slide Toggle</button>
+    <button id="btnAnimate">Animate</button>
+
+    <br><br>
+    <!-- Target Box -->
+    <div id="box">Target Box</div>
+
+</body>
+</html>

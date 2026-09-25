@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>jQuery Form Validation</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script>
+    $(document).ready(function() {
+        $("#regForm").submit(function(e) {
+            
+            // Prevent form from submitting
+            e.preventDefault();
+            
+            // Clear all previous error messages
+            $(".error-msg").html("");
+            var hasError = false;
+
+            // Get form values
+            var name = $("#name").val().trim();
+            var address = $("#address").val().trim();
+            var username = $("#username").val().trim();
+            var email = $("#email").val().trim();
+            var password = $("#password").val();
+            var phone = $("#phone").val().trim();
+            var gender = $("input[name='gender']:checked").val();
+            var course = $("#course").val();
+
+            // b. Name Validation
+            if (name === "") {
+                $("#err-name").html("Name must not be empty.");
+                hasError = true;
+            } else if (/[0-9]/.test(name)) {
+                $("#err-name").html("Name must not contain numbers.");
+                hasError = true;
+            }
+
+            // c. Username Validation
+            if (username === "") {
+                $("#err-username").html("Username must not be empty.");
+                hasError = true;
+            } else if (!/^[a-zA-Z0-9_]+$/.test(username)) {
+                $("#err-username").html("Only letters, numbers, and underscore allowed.");
+                hasError = true;
+            }
+
+            // f. Address Validation
+            if (address === "") {
+                $("#err-address").html("Address must not be empty.");
+                hasError = true;
+            }
+
+            // g. Email Validation
+            if (email === "") {
+                $("#err-email").html("Email must not be empty.");
+                hasError = true;
+            } else if (email.indexOf("@") === -1) {
+                $("#err-email").html("Email must contain '@' symbol.");
+                hasError = true;
+            }
+
+            // h. Password Validation
+            if (password === "") {
+                $("#err-password").html("Password must not be empty.");
+                hasError = true;
+            } else {
+                if (password.length < 8) { $("#err-password").html("At least 8 characters."); hasError = true; }
+                if (!/[0-9]/.test(password)) { $("#err-password").html("Must contain at least 1 digit."); hasError = true; }
+                if (!/[A-Z]/.test(password)) { $("#err-password").html("Must contain at least 1 uppercase."); hasError = true; }
+                if (!/[a-z]/.test(password)) { $("#err-password").html("Must contain at least 1 lowercase."); hasError = true; }
+                if (!/[^A-Za-z0-9]/.test(password)) { $("#err-password").html("Must contain at least 1 special character."); hasError = true; }
+            }
+
+            // d. Phone Validation
+            if (phone === "") {
+                $("#err-phone").html("Phone must not be empty.");
+                hasError = true;
+            } else if (!/^(98|97|96)[0-9]+$/.test(phone)) {
+                $("#err-phone").html("Must start with 98/97/96 and contain only numbers.");
+                hasError = true;
+            }
+
+            // e. Gender Validation
+            if (gender === undefined) {
+                $("#err-gender").html("Please select a gender.");
+                hasError = true;
+            }
+
+            // i. Course Validation
+            if (course === "") {
+                $("#err-course").html("Please select a course.");
+                hasError = true;
+            }
+
+            // If no errors, show success message
+            if (!hasError) {
+                $("#successMsg").html("<b style='color:green;'>Validation Successful! Form submitted.</b>");
+            } else {
+                $("#successMsg").html("");
+            }
+        });
+    });
+    </script>
+</head>
+<body>
+
+    <h3>Registration Form</h3>
+    <div id="successMsg"></div>
+    <br>
+
+    <form id="regForm">
+        <!-- Added <span class='error-msg'> next to each input -->
+        
+        <label>Name:</label><br>
+        <input type="text" id="name"> <span id="err-name" style="color:red;"></span><br><br>
+        
+        <label>Address:</label><br>
+        <textarea id="address"></textarea> <span id="err-address" style="color:red;"></span><br><br>
+        
+        <label>Username:</label><br>
+        <input type="text" id="username"> <span id="err-username" style="color:red;"></span><br><br>
+        
+        <label>Email:</label><br>
+        <input type="text" id="email"> <span id="err-email" style="color:red;"></span><br><br>
+        
+        <label>Password:</label><br>
+        <input type="password" id="password"> <span id="err-password" style="color:red;"></span><br><br>
+        
+        <label>Phone:</label><br>
+        <input type="text" id="phone"> <span id="err-phone" style="color:red;"></span><br><br>
+        
+        <label>Gender:</label><br>
+        <input type="radio" name="gender" value="Male"> Male
+        <input type="radio" name="gender" value="Female"> Female <span id="err-gender" style="color:red;"></span><br><br>
+        
+        <label>Course:</label><br>
+        <select id="course">
+            <option value="">-- Select --</option>
+            <option value="BCA">BCA</option>
+            <option value="BBA">BBA</option>
+            <option value="BSc CSIT">BSc CSIT</option>
+        </select> <span id="err-course" style="color:red;"></span><br><br>
+        
+        <input type="submit" value="Register">
+    </form>
+
+</body>
+</html>

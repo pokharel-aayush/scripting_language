@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AJAX Read Text File</title>
+</head>
+<body>
+
+    <h3>BCA Information (Loaded via AJAX)</h3>
+    
+    <!-- Div where the file content will be displayed -->
+    <div id="displayArea">Loading file...</div>
+    
+    <br>
+    <button onclick="loadFile()">Reload Content</button>
+
+    <script>
+    // Function to load the file using AJAX
+    function loadFile() {
+        
+        // 1. Create XMLHttpRequest object
+        var xhttp = new XMLHttpRequest();
+        
+        // 2. Define what happens when the response is ready
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                // 3. Display the file content inside the div
+                document.getElementById("displayArea").innerHTML = this.responseText;
+            } else if (this.readyState == 4) {
+                // Handle error (e.g., file not found)
+                document.getElementById("displayArea").innerHTML = "Error loading file. Make sure you are running this on localhost.";
+            }
+        };
+        
+        // 4. Open the file and send the request
+        xhttp.open("GET", "bca.txt", true);
+        xhttp.send();
+    }
+
+    // Automatically load the file when the page loads
+    window.onload = loadFile;
+    </script>
+
+</body>
+</html>

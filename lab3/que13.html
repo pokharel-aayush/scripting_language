@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Password Reset Check</title>
+</head>
+<body>
+
+    <h3>Password Reset</h3>
+    <p>Enter your username to check if it exists in our system.</p>
+    
+    <label>Username:</label>
+    <!-- onkeyup triggers the check every time the user types a character -->
+    <input type="text" id="username" onkeyup="checkUsername()">
+    
+    <br><br>
+    <!-- Div to display the result -->
+    <div id="result"></div>
+
+    <script>
+    function checkUsername() {
+        var username = document.getElementById("username").value;
+        
+        // If input is empty, clear the result and stop
+        if (username === "") {
+            document.getElementById("result").innerHTML = "";
+            return;
+        }
+
+        // Create XMLHttpRequest object
+        var xhttp = new XMLHttpRequest();
+        
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                // Trim whitespace from response
+                var response = this.responseText.trim();
+                
+                if (response === "exists") {
+                    document.getElementById("result").innerHTML = "<b style='color:green;'>Username found!</b> You can proceed to reset your password.";
+                } else {
+                    document.getElementById("result").innerHTML = "<b style='color:red;'>Username not found.</b> Please check and try again.";
+                }
+            }
+        };
+        
+        // Send POST request to PHP backend
+        xhttp.open("POST", "check_username.php", true);
+        xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        xhttp.send("username=" + username);
+    }
+    </script>
+
+</body>
+</html>

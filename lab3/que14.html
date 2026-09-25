@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AJAX Country City Dropdown</title>
+</head>
+<body>
+
+    <h3>Select Country and City</h3>
+    
+    <!-- Country Dropdown (triggers the AJAX call when changed) -->
+    <label>Country:</label>
+    <select id="country" onchange="getCities()">
+        <option value="">-- Select Country --</option>
+        <option value="Nepal">Nepal</option>
+        <option value="USA">USA</option>
+        <option value="India">India</option>
+    </select>
+    
+    <br><br>
+    
+    <!-- City Dropdown (populated by AJAX) -->
+    <label>City:</label>
+    <select id="city">
+        <option value="">-- Select City --</option>
+    </select>
+
+    <script>
+    function getCities() {
+        var country = document.getElementById("country").value;
+        var cityDropdown = document.getElementById("city");
+        
+        // Clear previous cities
+        cityDropdown.innerHTML = "<option value=''>-- Select City --</option>";
+        
+        // If no country is selected, stop the function
+        if (country === "") return;
+
+        // Create XMLHttpRequest object
+        var xhttp = new XMLHttpRequest();
+        
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                // Parse JSON array of cities returned from PHP
+                var cities = JSON.parse(this.responseText);
+                
+                // Loop through each city and add it to the dropdown
+                cities.forEach(function(city) {
+                    var option = document.createElement("option");
+                    option.value = city;
+                    option.text = city;
+                    cityDropdown.appendChild(option);
+                });
+            }
+        };
+        
+        // Send GET request to PHP backend with the selected country
+        xhttp.open("GET", "cities.php?country=" + country, true);
+        xhttp.send();
+    }
+    </script>
+
+</body>
+</html>
